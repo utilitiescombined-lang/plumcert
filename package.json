@@ -1,0 +1,15 @@
+{
+  "name": "plumcert",
+  "version": "1.0.0",
+  "description": "Plumcert - CP12 Gas Safety Certificates and Plumbing Inspections",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "googleapis": "^140.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Installer Portal — Plumcert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/installer.css">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="apple-touch-icon" href="../images/favicon.png">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="installer-login" id="loginScreen">
+    <div class="login-card">
+        <div class="login-logo-wrap">
+            <img src="../images/plumcert-logo.png" alt="Plumcert Logo">
+        </div>
+        <div class="login-brand-name">Plumcert</div>
+        <div class="login-brand-sub">Installer Portal</div>
+
+        <form id="loginForm" class="login-form">
+            <input type="text" id="loginUsername" placeholder="Username" autocomplete="username" required>
+            <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required>
+            <div id="loginError" class="login-error" style="display:none;"></div>
+            <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+        </form>
+        <p class="login-help">
+            Trouble signing in? Call us on <a href="tel:+441442601383">01442 601 383</a>
+        </p>
+    </div>
+</div>
+
+<!-- SPLASH / LOADING SCREEN -->
+<div class="splash-screen" id="splashScreen">
+    <img src="../images/plumcert-logo.png" alt="Plumcert" class="splash-logo">
+</div>
+
+<!-- DASHBOARD -->
+<div class="installer-dashboard" id="dashboard" style="display:none;">
+    <header class="installer-header">
+        <div class="installer-header-inner">
+            <div class="installer-header-left">
+                <img src="../images/plumcert-logo.png" alt="Plumcert Logo" width="32" height="32" style="border-radius:6px;">
+                <div>
+                    <span class="installer-title">Installer Portal</span>
+                    <span class="installer-subtitle" id="welcomeUser">Plumcert</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-outline btn-sm" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="installer-tabs">
+            <div class="installer-tabs-inner">
+                <button class="installer-tab active" data-tab="findings">
+                    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                    <span class="tab-label">Submit Finding</span>
+                </button>
+                <button class="installer-tab" data-tab="history">
+                    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 12 6 12 9 4 15 20 18 12 21 12"></polyline></svg>
+                    <span class="tab-label">Previous Findings</span>
+                </button>
+                <button class="installer-tab admin-only" data-tab="users" style="display:none;">
+                    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span class="tab-label">Manage Users</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="installer-main">
+        <div class="installer-container">
+
+            <!-- TAB: SUBMIT FINDING -->
+            <div class="tab-content active" id="tab-findings">
+                <section class="dashboard-section">
+                    <h2>Submit New Finding</h2>
+
+                    <form id="findingForm" class="finding-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="findingTitle">Title *</label>
+                                <input type="text" id="findingTitle" name="title" required placeholder="e.g. Corroded gas pipework under boiler">
+                            </div>
+                            <div class="form-group">
+                                <label for="findingClassification">Classification *</label>
+                                <select id="findingClassification" name="classification" required>
+                                    <option value="" disabled selected>Select code</option>
+                                    <option value="ID">ID — Immediately Dangerous</option>
+                                    <option value="AR">AR — At Risk</option>
+                                    <option value="NCS">NCS — Not to Current Standards</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="findingLocation">Location *</label>
+                                <select id="findingLocation" name="location" required>
+                                    <option value="" disabled selected>Select town</option>
+                                    <option value="St Albans">St Albans</option>
+                                    <option value="Watford">Watford</option>
+                                    <option value="Hemel Hempstead">Hemel Hempstead</option>
+                                    <option value="Stevenage">Stevenage</option>
+                                    <option value="Hertford">Hertford</option>
+                                    <option value="Welwyn Garden City">Welwyn Garden City</option>
+                                    <option value="Hatfield">Hatfield</option>
+                                    <option value="Hitchin">Hitchin</option>
+                                    <option value="Letchworth">Letchworth</option>
+                                    <option value="Berkhamsted">Berkhamsted</option>
+                                    <option value="Harpenden">Harpenden</option>
+                                    <option value="Bushey">Bushey</option>
+                                    <option value="Borehamwood">Borehamwood</option>
+                                    <option value="Cheshunt">Cheshunt</option>
+                                    <option value="Hoddesdon">Hoddesdon</option>
+                                    <option value="Ware">Ware</option>
+                                    <option value="Baldock">Baldock</option>
+                                    <option value="Royston">Royston</option>
+                                    <option value="Tring">Tring</option>
+                                    <option value="Potters Bar">Potters Bar</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="findingPropertyType">Property Type</label>
+                                <select id="findingPropertyType" name="propertyType">
+                                    <option value="" disabled selected>Select type</option>
+                                    <option value="Detached House">Detached House</option>
+                                    <option value="Semi-Detached House">Semi-Detached House</option>
+                                    <option value="Terraced House">Terraced House</option>
+                                    <option value="Flat / Apartment">Flat / Apartment</option>
+                                    <option value="Bungalow">Bungalow</option>
+                                    <option value="HMO">HMO</option>
+                                    <option value="Commercial">Commercial</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="findingApplianceType">Appliance / System</label>
+                            <select id="findingApplianceType" name="applianceType">
+                                <option value="" disabled selected>Select appliance</option>
+                                <option value="Combi Boiler">Combi Boiler</option>
+                                <option value="System Boiler">System Boiler</option>
+                                <option value="Heat-Only Boiler">Heat-Only Boiler</option>
+                                <option value="Gas Hob">Gas Hob</option>
+                                <option value="Gas Oven / Cooker">Gas Oven / Cooker</option>
+                                <option value="Gas Fire">Gas Fire</option>
+                                <option value="Gas Meter">Gas Meter</option>
+                                <option value="Gas Pipework">Gas Pipework</option>
+                                <option value="Flue / Chimney">Flue / Chimney</option>
+                                <option value="Hot Water Cylinder">Hot Water Cylinder</option>
+                                <option value="Radiators / Heating">Radiators / Heating</option>
+                                <option value="Plumbing / Pipework">Plumbing / Pipework</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="findingInspectionType">Inspection Type</label>
+                            <select id="findingInspectionType" name="inspectionType">
+                                <option value="" disabled selected>Select inspection</option>
+                                <option value="CP12 Landlord Gas Safety Record">CP12 Landlord Gas Safety Record</option>
+                                <option value="Annual Boiler Service">Annual Boiler Service</option>
+                                <option value="Homeowner Gas Safety Check">Homeowner Gas Safety Check</option>
+                                <option value="Home Buyer Inspection">Home Buyer Inspection</option>
+                                <option value="Boiler Repair">Boiler Repair</option>
+                                <option value="Plumbing Repair">Plumbing Repair</option>
+                                <option value="Emergency Callout">Emergency Callout</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="beforePhoto">Before Photo</label>
+                                <div class="photo-upload" id="beforeUpload">
+                                    <input type="file" id="beforePhoto" name="beforePhoto" accept="image/*" class="photo-input">
+                                    <div class="photo-placeholder" id="beforePreview">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                        <span>Click to upload</span>
+                                        <small>JPG, PNG or WebP (max 5MB)</small>
+                                    </div>
+                                    <img class="photo-thumb" id="beforeThumb" style="display:none;">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="afterPhoto">After Photo</label>
+                                <div class="photo-upload" id="afterUpload">
+                                    <input type="file" id="afterPhoto" name="afterPhoto" accept="image/*" class="photo-input">
+                                    <div class="photo-placeholder" id="afterPreview">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                        <span>Click to upload</span>
+                                        <small>JPG, PNG or WebP (max 5MB)</small>
+                                    </div>
+                                    <img class="photo-thumb" id="afterThumb" style="display:none;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" data-ai-field="description">
+                            <label for="findingDescription">Description (what's wrong) *</label>
+                            <textarea id="findingDescription" name="description" rows="4" required placeholder="e.g. Inadequate room ventilation for an open-flue boiler. Combustion analyser readings outside manufacturer's tolerance. Reference relevant standards (GSIUR 1998, BS 5440, BS 6891) where applicable."></textarea>
+                            <div class="ai-rewrite-bar">
+                                <button type="button" class="btn btn-ai ai-rewrite-btn" data-field="description" data-mode="rewrite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+                                    AI Rewrite
+                                </button>
+                                <button type="button" class="btn btn-outline btn-sm ai-rewrite-btn" data-field="description" data-mode="proofread">
+                                    Spell &amp; Grammar
+                                </button>
+                                <button type="button" class="btn btn-outline btn-sm ai-undo-btn" data-field="description" style="display:none;">Undo</button>
+                                <span class="ai-status" data-field-status="description"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" data-ai-field="fix">
+                            <label for="findingFix">Fix (how it was resolved)</label>
+                            <textarea id="findingFix" name="fix" rows="3" placeholder="e.g. Isolated gas supply at the ECV, replaced perished flue seal, recommissioned to manufacturer instructions and re-tested combustion."></textarea>
+                            <div class="ai-rewrite-bar">
+                                <button type="button" class="btn btn-ai ai-rewrite-btn" data-field="fix" data-mode="rewrite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+                                    AI Rewrite
+                                </button>
+                                <button type="button" class="btn btn-outline btn-sm ai-rewrite-btn" data-field="fix" data-mode="proofread">
+                                    Spell &amp; Grammar
+                                </button>
+                                <button type="button" class="btn btn-outline btn-sm ai-undo-btn" data-field="fix" style="display:none;">Undo</button>
+                                <span class="ai-status" data-field-status="fix"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" data-ai-field="outcome">
+                            <label for="findingOutcome">Outcome (final result)</label>
+                            <textarea id="findingOutcome" name="outcome" rows="2" placeholder="e.g. Appliance recommissioned, classified safe to use and CP12 issued."></textarea>
+                            <div class="ai-rewrite-bar">
+                                <button type="button" class="btn btn-ai ai-rewrite-btn" data-field="outcome" data-mode="rewrite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+                                    AI Rewrite
+                                </button>
+                                <button type="button" class="btn btn-outline btn-sm ai-rewrite-btn" data-field="outcome" data-mode="proofread">
+                                    Spell &amp; Grammar
+                                </button>
+                                <button type="button" class="btn btn-outline btn-sm ai-undo-btn" data-field="outcome" style="display:none;">Undo</button>
+                                <span class="ai-status" data-field-status="outcome"></span>
+                            </div>
+                        </div>
+
+                        <div id="findingError" class="login-error" style="display:none;"></div>
+                        <div id="findingSuccess" class="finding-success" style="display:none;">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#22c55e"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Finding submitted successfully!
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitFindingBtn">Submit Finding</button>
+                    </form>
+                </section>
+            </div>
+
+            <!-- TAB: PREVIOUS FINDINGS -->
+            <div class="tab-content" id="tab-history">
+                <section class="dashboard-section">
+                    <h2>Previous Findings</h2>
+                    <div id="findingsList" class="findings-list">
+                        <p class="empty-state">Loading findings...</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB: MANAGE USERS (admin only) -->
+            <div class="tab-content" id="tab-users">
+                <section class="dashboard-section">
+                    <h2>Create Installer Account</h2>
+                    <form id="createUserForm" class="finding-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newUsername">Username *</label>
+                                <input type="text" id="newUsername" placeholder="e.g. John Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Password *</label>
+                                <input type="text" id="newPassword" placeholder="Min 6 characters" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newRole">Role</label>
+                            <select id="newRole">
+                                <option value="installer">Installer</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div id="userError" class="login-error" style="display:none;"></div>
+                        <div id="userSuccess" class="finding-success" style="display:none;">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#22c55e"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            <span id="userSuccessMsg">Account created!</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="createUserBtn">Create Account</button>
+                    </form>
+                </section>
+
+                <section class="dashboard-section">
+                    <h2>All Users</h2>
+                    <div id="usersList" class="users-list">
+                        <p class="empty-state">Loading users...</p>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script src="../js/installer.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Latest Findings | Plumcert Gas Safety Inspections</title>
+    <meta name="description" content="Real findings from our CP12 gas safety inspections in Hertfordshire. See common boiler, flue and plumbing faults we discover and how they are resolved.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Google Tag Manager -->
+    <script defer>if(location.hostname!=='localhost'){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MPGJV5DC');}</script>
+
+    <!-- Google Ads (AW-18046002549) — conversion tracking, loads on production only -->
+    <script defer>if(location.hostname!=='localhost'){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=AW-18046002549';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18046002549');}</script>
+
+    <!-- Microsoft Clarity -->
+    <script defer type="text/javascript">if(location.hostname!=='localhost'){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","XXXXXXXXXX");}</script>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="apple-touch-icon" href="../images/favicon.png">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="container nav-container">
+        <a href="../index.html" class="logo">
+            <img src="../images/plumcert-logo.png" alt="Plumcert — Part of Utilities Combined Group" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-brand">Plumcert</span>
+                    <span class="logo-sub">Part of Utilities Combined Group</span>
+                </div>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <div class="nav-menu" id="navMenu">
+            <a href="../index.html#services" class="nav-link">Services</a>
+            <a href="findings.html" class="nav-link">Real Findings</a>
+            <a href="tips.html" class="nav-link">Quick Tips</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="../index.html#book" class="btn btn-primary btn-nav">Book Inspection</a>
+        </div>
+    </div>
+</nav>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Our Latest Findings</h1>
+        <p>Real examples of issues discovered during routine gas safety and boiler inspections in Hertfordshire properties.</p>
+    </div>
+</section>
+
+<section class="page-content">
+    <div class="container">
+        <!-- Real findings load here from /api/findings; empty state shown until any are approved -->
+        <div class="case-grid" id="caseGrid"></div>
+        <div id="findingsEmpty" style="display:none; text-align:center; padding:48px 16px; color:#6b7280;">
+            <p style="font-size:1.05rem; margin-bottom:8px;">Our latest findings will appear here.</p>
+            <p style="font-size:0.9rem;">We are uploading new case studies regularly. Check back soon.</p>
+        </div>
+        <div id="dynamicFindings" style="display:none;"></div>
+
+        <div style="text-align: center; margin-top: 48px;">
+            <p style="color: #6b7280; margin-bottom: 20px;">Every one of these issues was found before it caused a serious problem. Could your property have a hidden fault?</p>
+            <a href="../index.html#book" class="btn btn-primary btn-lg">Book Your Inspection</a>
+        </div>
+    </div>
+</section>
+
+<script>
+// Load approved findings from the API and render them into the grid.
+// Empty state shown when no findings exist (no hardcoded placeholders).
+(async function() {
+    function escapeHtml(s) {
+        if (s === null || s === undefined) return '';
+        return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+    }
+    const supportsHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+    const hintText = supportsHover ? 'Hover to see fix' : 'Tap to see fix';
+
+    const grid = document.getElementById('caseGrid');
+    const emptyState = document.getElementById('findingsEmpty');
+
+    try {
+        const res = await fetch('/api/findings');
+        const data = await res.json();
+        const findings = (data && data.success && data.findings) ? data.findings : [];
+
+        if (findings.length === 0) {
+            if (grid) grid.style.display = 'none';
+            if (emptyState) emptyState.style.display = 'block';
+            return;
+        }
+
+        const classMap = { ID: 'code-c1', AR: 'code-c2', NCS: 'code-c3' };
+        const labelMap = { ID: 'Immediately Dangerous', AR: 'At Risk', NCS: 'Not to Current Standards' };
+        const dash = ' — ';
+
+        for (const f of findings) {
+            const tagClass = classMap[f.classification] || 'code-c2';
+            const label = f.classificationLabel || labelMap[f.classification] || '';
+            const before = f.beforeImage ? '../' + f.beforeImage : '';
+            const after = f.afterImage ? '../' + f.afterImage : '';
+            const hasBoth = before && after;
+
+            let imgBlock;
+            if (hasBoth) {
+                imgBlock =
+                    '<div class="case-img-flip" tabindex="0" role="button" aria-label="Toggle before and after images">'
+                    + '<img class="flip-img flip-before" src="' + escapeHtml(before) + '" alt="Before — ' + escapeHtml(f.title) + '" loading="lazy">'
+                    + '<img class="flip-img flip-after" src="' + escapeHtml(after) + '" alt="After — ' + escapeHtml(f.title) + '" loading="lazy">'
+                    + '<span class="flip-tag flip-tag-before">Before</span>'
+                    + '<span class="flip-tag flip-tag-after">After</span>'
+                    + '<span class="flip-hint">' + escapeHtml(hintText) + '</span>'
+                    + '</div>';
+            } else if (before || after) {
+                imgBlock =
+                    '<div class="case-img-flip case-img-single">'
+                    + '<img class="flip-img" src="' + escapeHtml(before || after) + '" alt="' + escapeHtml(f.title) + '" loading="lazy">'
+                    + '<span class="flip-tag ' + (before ? 'flip-tag-before' : 'flip-tag-after') + '">' + (before ? 'Before' : 'After') + '</span>'
+                    + '</div>';
+            } else {
+                imgBlock = '<div class="case-img"></div>';
+            }
+
+            const card = document.createElement('div');
+            card.className = 'case-card';
+            card.innerHTML = imgBlock
+                + '<div class="case-body">'
+                + '<span class="finding-tag ' + tagClass + '">' + escapeHtml(f.classification) + dash + escapeHtml(label) + '</span>'
+                + '<h3>' + escapeHtml(f.title) + (f.location ? dash + escapeHtml(f.location) : '') + '</h3>'
+                + '<p>' + escapeHtml(f.description) + '</p>'
+                + (f.fix ? '<p><strong>Fix:</strong> ' + escapeHtml(f.fix) + '</p>' : '')
+                + (f.outcome ? '<p><strong>Outcome:</strong> ' + escapeHtml(f.outcome) + '</p>' : '')
+                + '</div>';
+            grid.appendChild(card);
+        }
+
+        // Touch / keyboard fallback: tap or Enter/Space toggles the flip
+        document.querySelectorAll('.case-img-flip').forEach(el => {
+            if (el.classList.contains('case-img-single')) return;
+            el.addEventListener('click', () => el.classList.toggle('flipped'));
+            el.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.classList.toggle('flipped'); }
+            });
+        });
+    } catch (e) { /* silent — static placeholder content remains */ }
+})();
+</script>
+
+<style>
+.case-img-flip {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #e2ecf5;
+}
+.case-img-flip.case-img-single { cursor: default; }
+.case-img-flip .flip-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.35s ease;
+}
+.case-img-flip .flip-after { opacity: 0; }
+.case-img-flip .flip-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+    z-index: 2;
+    transition: opacity 0.35s ease;
+}
+.case-img-flip .flip-tag-before { background: var(--danger, #dc2626); }
+.case-img-flip .flip-tag-after { background: var(--success, #16a34a); opacity: 0; }
+.case-img-flip .flip-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    padding: 5px 11px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+@media (hover: hover) {
+    .case-img-flip:not(.case-img-single):hover .flip-before { opacity: 0; }
+    .case-img-flip:not(.case-img-single):hover .flip-after { opacity: 1; }
+    .case-img-flip:not(.case-img-single):hover .flip-tag-before { opacity: 0; }
+    .case-img-flip:not(.case-img-single):hover .flip-tag-after { opacity: 1; }
+    .case-img-flip:not(.case-img-single):hover .flip-hint { opacity: 0; }
+}
+.case-img-flip.flipped .flip-before { opacity: 0; }
+.case-img-flip.flipped .flip-after { opacity: 1; }
+.case-img-flip.flipped .flip-tag-before { opacity: 0; }
+.case-img-flip.flipped .flip-tag-after { opacity: 1; }
+.case-img-flip.flipped .flip-hint { opacity: 0; }
+.case-img-flip:focus-visible { outline: 3px solid var(--primary, #1E40AF); outline-offset: 2px; }
+</style>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom" style="border-top: none;">
+            <p>&copy; 2026 Utilities Combined Group. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/441442601383" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.594-.826-6.336-2.207l-.442-.353-3.238 1.085 1.085-3.238-.353-.442A9.956 9.956 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+</body>
+</html>

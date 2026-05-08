@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: plumcert
+    runtime: node
+    repo: https://github.com/danielcrypto1/plumcert
+    branch: master
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GOOGLE_CALENDAR_ID
+        value: utilitiescombined@gmail.com
+      - key: GOOGLE_CREDENTIALS_JSON
+        sync: false
