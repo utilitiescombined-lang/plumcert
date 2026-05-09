@@ -2,7 +2,7 @@ services:
   - type: web
     name: plumcert
     runtime: node
-    repo: https://github.com/danielcrypto1/plumcert
+    repo: https://github.com/utilitiescombined-lang/plumcert
     branch: master
     buildCommand: npm install
     startCommand: node server.js
