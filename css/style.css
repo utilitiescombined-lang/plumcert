@@ -323,13 +323,15 @@ h1, h2, h3, h4 {
 
 .hero-cover-img {
     width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    aspect-ratio: 4/5;
+    max-height: 540px;
+    object-fit: contain;
     object-position: center;
-    background: white;
+    background: linear-gradient(135deg, #fff7e6, #fdecd2);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-xl);
     display: block;
+    padding: 24px;
 }
 
 .signs-img {
@@ -1346,7 +1348,7 @@ h1, h2, h3, h4 {
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-image { order: -1; max-height: none; overflow: visible; }
     .hero-img-placeholder { aspect-ratio: 16/9; }
-    .hero-cover-img { aspect-ratio: 16/9; }
+    .hero-cover-img { aspect-ratio: 4/5; max-height: 420px; }
     .signs-img { aspect-ratio: 4/3; }
     .risk-grid { grid-template-columns: repeat(2, 1fr); }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
