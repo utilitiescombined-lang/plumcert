@@ -2,10 +2,10 @@
 
 /* Variable aliases (installer.css references shorter names than style.css defines) */
 :root {
-    --primary: #1E40AF;
-    --primary-dark: #1E3A8A;
-    --accent: #F59E0B;
-    --accent-dark: #D97706;
+    --primary: #6B1014;
+    --primary-dark: #4A0A0D;
+    --accent: #E8A85A;
+    --accent-dark: #C8893E;
     --danger: #e74c3c;
     --success: #22c55e;
     --text: #1a1a2e;
@@ -95,7 +95,7 @@
     outline: none;
     border-color: var(--accent);
     background: #fff;
-    box-shadow: 0 0 0 4px rgba(245,158,11,0.14);
+    box-shadow: 0 0 0 4px rgba(232,168,90,0.14);
 }
 
 .login-card .btn-login {
@@ -110,14 +110,14 @@
     cursor: pointer;
     margin-top: 6px;
     transition: all 0.2s;
-    box-shadow: 0 2px 8px rgba(245,158,11,0.25);
+    box-shadow: 0 2px 8px rgba(232,168,90,0.25);
     font-family: inherit;
 }
 
 .login-card .btn-login:hover {
     background: #e09418;
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(245,158,11,0.35);
+    box-shadow: 0 4px 16px rgba(232,168,90,0.35);
 }
 
 .login-card .btn-login:active { transform: translateY(0); }
@@ -623,7 +623,7 @@
 }
 
 .user-role.admin { background: #fef3c7; color: #92400e; }
-.user-role.installer { background: #dbeafe; color: #1e40af; }
+.user-role.installer { background: #dbeafe; color: #6B1014; }
 
 .user-actions {
     display: flex;

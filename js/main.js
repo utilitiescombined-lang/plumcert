@@ -108,7 +108,7 @@ if (bookingForm) {
                         <circle cx="32" cy="32" r="24" fill="#22c55e" opacity="0.2"/>
                         <path d="M20 32l8 8 16-16" stroke="#22c55e" stroke-width="3" fill="none" stroke-linecap="round"/>
                     </svg>
-                    <h3 style="color: #1E40AF; margin-bottom: 8px;">Request Received</h3>
+                    <h3 style="color: #6B1014; margin-bottom: 8px;">Request Received</h3>
                     <p style="color: #6b7280; font-size: 0.95rem;">
                         Thank you, <strong>${data.fullName}</strong>. We will be in touch within 2 hours to confirm your inspection appointment.
                     </p>
@@ -219,7 +219,7 @@ if (contactForm) {
                         <circle cx="32" cy="32" r="24" fill="#22c55e" opacity="0.2"/>
                         <path d="M20 32l8 8 16-16" stroke="#22c55e" stroke-width="3" fill="none" stroke-linecap="round"/>
                     </svg>
-                    <h3 style="color: #1E40AF; margin-bottom: 8px;">Message Sent</h3>
+                    <h3 style="color: #6B1014; margin-bottom: 8px;">Message Sent</h3>
                     <p style="color: #6b7280; font-size: 0.95rem;">
                         Thank you, <strong>${name}</strong>. We will get back to you within 2 hours.
                     </p>

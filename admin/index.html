@@ -10,16 +10,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1E40AF;
-      --primary-dark: #1E3A8A;
-      --accent: #F59E0B;
+      --primary: #6B1014;
+      --primary-dark: #4A0A0D;
+      --accent: #E8A85A;
       --text-dark: #1a1a2e;
       --text-medium: #4a5568;
       --bg-light: #f8fafc;
       --bg-dark: #0f172a;
       --border: #e2e8f0;
       --success: #10b981;
-      --warning: #f59e0b;
+      --warning: #E8A85A;
       --danger: #ef4444;
       --radius: 8px;
       --shadow: 0 1px 3px rgba(0,0,0,0.08);
@@ -78,7 +78,7 @@
     .login-form input:focus {
       border-color: var(--accent);
       background: #fff;
-      box-shadow: 0 0 0 4px rgba(245,158,11,0.14);
+      box-shadow: 0 0 0 4px rgba(232,168,90,0.14);
     }
     .login-box .btn-login {
       width: 100%;
@@ -92,13 +92,13 @@
       cursor: pointer;
       margin-top: 6px;
       transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(245,158,11,0.25);
+      box-shadow: 0 2px 8px rgba(232,168,90,0.25);
       font-family: inherit;
     }
     .login-box .btn-login:hover {
       background: #e09418;
       transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(245,158,11,0.35);
+      box-shadow: 0 4px 16px rgba(232,168,90,0.35);
     }
     .login-box .btn-login:active { transform: translateY(0); }
     .login-box .btn-login:disabled {
@@ -248,7 +248,7 @@
     .status-contacted { background: #fef3c7; color: #b45309; }
     .status-booked { background: #d1fae5; color: #065f46; }
     .status-completed { background: #e0e7ff; color: #4338ca; }
-    .status-cancelled { background: #fee2e2; color: #dc2626; }
+    .status-cancelled { background: #fee2e2; color: #D6432A; }
     .action-btn {
       padding: 6px 12px; border-radius: var(--radius); font-size: 0.8rem;
       font-weight: 600; cursor: pointer; border: 1px solid var(--border);
@@ -836,7 +836,7 @@
           const starTitle = isFeatured ? 'Unfeature from homepage' : (isApproved ? 'Feature on homepage' : 'Approve the finding before featuring it');
           const starStyle = 'padding:4px 10px;border-radius:4px;cursor:' + (isApproved ? 'pointer' : 'not-allowed') + ';font-size:0.95rem;margin-right:4px;'
             + (isFeatured
-                ? 'border:1px solid #F59E0B;background:#fff6e0;color:#92400e;font-weight:700;'
+                ? 'border:1px solid #E8A85A;background:#fff6e0;color:#92400e;font-weight:700;'
                 : 'border:1px solid var(--border);background:white;color:#9ca3af;'
               )
             + (isApproved ? '' : 'opacity:0.55;');
@@ -847,7 +847,7 @@
               <strong>${escAdm(f.title)}</strong> ${isFeatured ? '<span style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;font-size:0.7rem;font-weight:700;background:#fff6e0;color:#92400e;">â˜… Featured</span>' : ''}
               <div style="font-size:0.8rem;color:var(--text-medium);">${escAdm(f.location || '')}</div>
             </td>
-            <td style="padding:12px;border-bottom:1px solid var(--border);"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;background:${f.classification==='ID'?'#fee2e2':f.classification==='AR'?'#fef3c7':'#dbeafe'};color:${f.classification==='ID'?'#991b1b':f.classification==='AR'?'#92400e':'#1e40af'};">${escAdm(f.classification)}</span></td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;background:${f.classification==='ID'?'#fee2e2':f.classification==='AR'?'#fef3c7':'#dbeafe'};color:${f.classification==='ID'?'#991b1b':f.classification==='AR'?'#92400e':'#6B1014'};">${escAdm(f.classification)}</span></td>
             <td style="padding:12px;border-bottom:1px solid var(--border);font-size:0.85rem;">${escAdm(f.submittedBy || '-')}</td>
             <td style="padding:12px;border-bottom:1px solid var(--border);"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;background:${f.status==='approved'?'#dcfce7':'#fef3c7'};color:${f.status==='approved'?'#166534':'#92400e'};">${escAdm(f.status)}</span></td>
             <td style="padding:12px;border-bottom:1px solid var(--border);text-align:right;white-space:nowrap;">
@@ -892,7 +892,7 @@
         <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);">
           <div>
             <strong>${escAdm(u.username)}</strong>
-            <span style="display:inline-block;margin-left:8px;padding:1px 8px;border-radius:4px;font-size:0.7rem;font-weight:700;background:${u.role==='admin'?'#dbeafe':'#f3f4f6'};color:${u.role==='admin'?'#1e40af':'#374151'};">${u.role}</span>
+            <span style="display:inline-block;margin-left:8px;padding:1px 8px;border-radius:4px;font-size:0.7rem;font-weight:700;background:${u.role==='admin'?'#dbeafe':'#f3f4f6'};color:${u.role==='admin'?'#6B1014':'#374151'};">${u.role}</span>
             <div style="font-size:0.75rem;color:var(--text-medium);margin-top:2px;">Created ${new Date(u.createdAt).toLocaleDateString('en-GB')}</div>
           </div>
           <div style="display:flex;gap:6px;">

@@ -1,11 +1,11 @@
 ﻿/* ==================== DESIGN TOKENS ==================== */
 :root {
-    --color-primary: #1E40AF;
-    --color-primary-dark: #1E3A8A;
-    --color-primary-light: #3B82F6;
-    --color-accent: #F59E0B;
-    --color-accent-dark: #D97706;
-    --color-danger: #DC2626;
+    --color-primary: #6B1014;
+    --color-primary-dark: #4A0A0D;
+    --color-primary-light: #8E1A1F;
+    --color-accent: #E8A85A;
+    --color-accent-dark: #C8893E;
+    --color-danger: #D6432A;
     --color-success: #22c55e;
     --color-whatsapp: #25D366;
     --color-text: #1a1a2e;

@@ -313,7 +313,7 @@ function renderFindings(findings) {
         return;
     }
 
-    const classColors = { ID: '#DC2626', AR: '#F59E0B', NCS: '#3b82f6' };
+    const classColors = { ID: '#D6432A', AR: '#E8A85A', NCS: '#8E1A1F' };
     const isAdmin = userRole === 'admin';
 
     findingsList.innerHTML = findings.map(f => {
