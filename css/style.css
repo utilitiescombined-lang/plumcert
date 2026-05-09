@@ -253,7 +253,7 @@ h1, h2, h3, h4 {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.3fr 0.7fr;
     gap: 60px;
     align-items: center;
 }
@@ -323,8 +323,9 @@ h1, h2, h3, h4 {
 
 .hero-cover-img {
     width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
     aspect-ratio: 4/5;
-    max-height: 540px;
     object-fit: cover;
     object-position: center;
     background: #ffffff;
