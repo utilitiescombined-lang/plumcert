@@ -1,9 +1,9 @@
-# Plumcert — Ads & SEO Integration Guide
+﻿# Plumcert — Ads & SEO Integration Guide
 
 ## 1. Analytics & Tracking
 
 ### Google Analytics 4
-- Create a new GA4 property for plumcert.co.uk
+- Create a new GA4 property for plumbcert.co.uk
 - Replace the placeholder Google Tag Manager ID in every HTML file's GTM snippet (`GTM-MPGJV5DC` is currently inherited from Electricert — generate a new container or share the same one and filter by hostname)
 - Track these events as conversions:
   - `book_inspection_click` — main CTA buttons
@@ -12,7 +12,7 @@
   - `form_submit` — booking + contact form submissions
 
 ### Google Ads conversion tracking
-- Replace `AW-18046002549` with the new conversion ID for plumcert.co.uk
+- Replace `AW-18046002549` with the new conversion ID for plumbcert.co.uk
 - Set up conversion actions for: book form, phone click, WhatsApp click
 
 ### Microsoft Clarity (heatmaps)
@@ -67,15 +67,15 @@
 
 ## 4. Cross-Promotion Inside Utilities Combined Group
 
-1. Add a "Gas Safety" link to the UC services dropdown pointing to plumcert.co.uk
+1. Add a "Gas Safety" link to the UC services dropdown pointing to plumbcert.co.uk
 2. Add a "Plumcert (gas safety) | ElectriCert (electrical)" cross-banner on each sister site
 3. Plumcert footer already links to Utilities Combined Group
 4. Run cross-domain remarketing: show Plumcert ads to Electricert visitors and vice versa
 
 ## 5. Local SEO
 
-1. **Google Business Profile** — create or claim listing, link to plumcert.co.uk
-2. **Google Search Console** — verify plumcert.co.uk and submit sitemap.xml
+1. **Google Business Profile** — create or claim listing, link to plumbcert.co.uk
+2. **Google Search Console** — verify plumbcert.co.uk and submit sitemap.xml
 3. **Bing Webmaster Tools** — same
 4. **Local citations** — Yell, Yelp, FreeIndex, Trust A Trader, Checkatrade
 5. **Schema.org** — `LocalBusiness` + `FAQPage` + `Service` are already in `index.html`
@@ -95,7 +95,7 @@
 - [ ] Replace GTM container ID
 - [ ] Replace Google Ads conversion ID
 - [ ] Replace Microsoft Clarity ID
-- [ ] Verify plumcert.co.uk in Google Search Console + submit sitemap
+- [ ] Verify plumbcert.co.uk in Google Search Console + submit sitemap
 - [ ] Set up Google Business Profile
 - [ ] Create Calendly event type for `gas-safety-inspection-booking-call`
 - [ ] Create plumcert@utilitiescombined.co.uk email forwarder in Namecheap
