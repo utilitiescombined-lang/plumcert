@@ -1,193 +1,102 @@
-# ElectriCert - Ads & SEO Integration Guide
+# Plumcert — Ads & SEO Integration Guide
 
-## Quick Setup Checklist
+## 1. Analytics & Tracking
 
-### 1. Google Analytics 4
-- Go to https://analytics.google.com
-- Create a new property for electricert.co.uk
-- Copy your Measurement ID (starts with `G-`)
-- Replace `G-XXXXXXXXXX` in `index.html` (line with gtag config)
+### Google Analytics 4
+- Create a new GA4 property for plumcert.co.uk
+- Replace the placeholder Google Tag Manager ID in every HTML file's GTM snippet (`GTM-MPGJV5DC` is currently inherited from Electricert — generate a new container or share the same one and filter by hostname)
+- Track these events as conversions:
+  - `book_inspection_click` — main CTA buttons
+  - `phone_click` — `tel:` links
+  - `whatsapp_click` — `wa.me` links
+  - `form_submit` — booking + contact form submissions
 
-### 2. Google Ads
-- Go to https://ads.google.com
-- Link your Google Ads account to Google Analytics
-- Copy your Conversion ID (starts with `AW-`)
-- Replace `AW-XXXXXXXXXX` in `index.html`
-- Uncomment the Google Ads conversion line in `js/main.js`
-- Set up conversion actions in Google Ads:
-  - **Primary conversion**: Form submission (fires on booking form submit)
-  - **Secondary conversion**: Phone call clicks (track `tel:` link clicks)
+### Google Ads conversion tracking
+- Replace `AW-18046002549` with the new conversion ID for plumcert.co.uk
+- Set up conversion actions for: book form, phone click, WhatsApp click
 
-### 3. Facebook Pixel
-- Go to https://business.facebook.com/events_manager
-- Create a new Pixel for electricert.co.uk
-- Copy your Pixel ID (15-digit number)
-- Replace `XXXXXXXXXXXXXXX` in `index.html`
-- Uncomment both `fbq('init'...)` and `fbq('track', 'PageView')` lines
-- Uncomment the `fbq('track', 'Lead')` line in `js/main.js`
+### Microsoft Clarity (heatmaps)
+- Replace the placeholder `XXXXXXXXXX` Clarity tag in each page
 
----
+## 2. Google Ads Campaigns
 
-## Google Ads Campaign Recommendations
+### Campaign 1: Search — Landlord CP12 (Highest Intent)
+**Ad Group: Landlord CP12**
+- cp12 hertfordshire
+- gas safety certificate hertfordshire
+- landlord gas safety certificate
+- cp12 landlord
+- gas safe engineer hertfordshire
+- gas safety check landlord
+- annual gas safety certificate
 
-### Campaign 1: Search - EICR Inspections (High Intent)
-**Budget**: Start with £20-30/day
-**Bid Strategy**: Maximize conversions
+**Headlines / descriptions:**
+- Headline 1: CP12 Gas Safety Certificate
+- Headline 2: Gas Safe Registered Engineers
+- Headline 3: Same-Week Booking
+- Description 1: Stay legally compliant. CP12 landlord gas safety records across Hertfordshire. 24-hour turnaround.
+- Description 2: Avoid unlimited fines under GSIUR 1998. Multi-property discounts. Book online today.
 
-**Ad Group: Homeowner EICR**
-Keywords:
-- eicr inspection hertfordshire
-- electrical inspection near me
-- fuse board testing hertfordshire
-- electrical safety certificate hertfordshire
-- eicr certificate st albans
-- eicr inspection watford
-- electrical inspection hemel hempstead
-- home electrical safety test
+### Campaign 2: Search — Boiler Service (Mid Intent)
+- boiler service hertfordshire
+- annual boiler service
+- gas safe boiler engineer
+- boiler check hertfordshire
+- boiler service near me
 
-Sample Ad:
-```
-Headline 1: EICR Inspection From £XXX
-Headline 2: NICEIC Certified Engineers
-Headline 3: Report Within 24 Hours
-Description 1: Book your EICR electrical inspection in Hertfordshire. 2,400+ inspections completed. NICEIC approved, fully insured.
-Description 2: Protect your home insurance. Professional fuse board testing with same-week availability. Book online now.
-```
+### Campaign 3: Search — Home Buyer Gas Check (Low Intent, High Value)
+- pre-purchase gas inspection
+- home buyer gas safety check
+- boiler check before buying house
 
-**Ad Group: Landlord Certificates**
-Keywords:
-- landlord electrical certificate
-- landlord eicr hertfordshire
-- electrical safety certificate landlord
-- landlord compliance certificate
-- rental property electrical test
-- eicr for landlords
+### Suggested Negative Keywords
+`free`, `diy`, `course`, `training`, `salary`, `jobs`, `qualification`, `electric` (if running gas-only campaigns), `commercial gas`, `lpg` (unless serving)
 
-Sample Ad:
-```
-Headline 1: Landlord EICR Certificate
-Headline 2: Legal Compliance From £XXX
-Headline 3: Multi-Property Discounts
-Description 1: Meet your legal obligation. Landlord electrical safety certificates across Hertfordshire. NICEIC approved.
-Description 2: Avoid fines up to £30,000. Fast 48hr turnaround, multi-property discounts. Book your landlord EICR today.
-```
+## 3. Social / Meta Ads
 
-**Ad Group: Home Buyer Inspections**
-Keywords:
-- home buyer electrical inspection
-- pre purchase eicr
-- electrical survey before buying house
-- home buyer electrical test
-- electrical report for house purchase
+### Audience targeting
+- Hertfordshire postcodes (WD, AL, SG, EN, HP)
+- Homeowners aged 30-65, landlords, estate agents
+- Lookalikes from Electricert customer list (Utilities Combined CRM)
 
-### Campaign 2: Search - Location Targeting
-Create separate ad groups for each key town:
-- St Albans, Watford, Hemel Hempstead, Stevenage, Hertford
-- Welwyn Garden City, Hatfield, Berkhamsted, Harpenden, Rickmansworth
+### Creative angles
+- "Could your boiler cost you your home insurance?"
+- Carbon monoxide warning sign visuals
+- Before/after photos of failed flues, soot stains, corroded pipework (once findings are uploaded)
+- "Landlord? Your CP12 deadline is closer than you think."
 
-### Campaign 3: Performance Max
-- Use your case study images (before/after findings)
-- Target Hertfordshire region
-- Let Google optimise across Search, Display, YouTube, Gmail
+## 4. Cross-Promotion Inside Utilities Combined Group
 
----
+1. Add a "Gas Safety" link to the UC services dropdown pointing to plumcert.co.uk
+2. Add a "Plumcert (gas safety) | ElectriCert (electrical)" cross-banner on each sister site
+3. Plumcert footer already links to Utilities Combined Group
+4. Run cross-domain remarketing: show Plumcert ads to Electricert visitors and vice versa
 
-## Facebook & Instagram Ads
+## 5. Local SEO
 
-### Campaign 1: Awareness - Homeowner Safety
-**Objective**: Lead generation
-**Audience**: Homeowners in Hertfordshire, 30-65 age
-**Budget**: £10-15/day
+1. **Google Business Profile** — create or claim listing, link to plumcert.co.uk
+2. **Google Search Console** — verify plumcert.co.uk and submit sitemap.xml
+3. **Bing Webmaster Tools** — same
+4. **Local citations** — Yell, Yelp, FreeIndex, Trust A Trader, Checkatrade
+5. **Schema.org** — `LocalBusiness` + `FAQPage` + `Service` are already in `index.html`
+6. **Reviews** — drive Google reviews via the post-job WhatsApp template in `server.js` (`/api/leads/:id/send-review`)
 
-Ad Creative Ideas:
-- Before/after fuse board photos from your findings
-- "Is your fuse board older than your car?" hook
-- "6 signs your electrics need testing" carousel
-- Video walkthrough of an inspection
+## 6. Suggested Content Posts (blog/social)
 
-Sample Copy:
-```
-Did you know an untested fuse board could invalidate your home insurance?
+- "What is a CP12 and who needs one?"
+- "How often should you service your boiler?"
+- "Carbon monoxide: the silent killer in your home"
+- "Landlord gas safety responsibilities 2026"
+- "Worcester Bosch vs Vaillant vs Ideal — which boiler is right?"
+- "Signs your boiler needs replacing (not just servicing)"
 
-Most homeowners in Hertfordshire haven't had their electrics tested in over 10 years.
+## 7. Setup Checklist
 
-Our NICEIC-certified engineers have completed 2,400+ inspections across the county.
-
-Book your EICR inspection today — report delivered within 24 hours.
-
-electricert.co.uk
-```
-
-### Campaign 2: Landlord Compliance
-**Objective**: Conversions
-**Audience**:
-- Interest: Property management, Buy to let, Landlord
-- Location: Hertfordshire
-**Budget**: £10-15/day
-
-Sample Copy:
-```
-Landlords: Is your EICR up to date?
-
-Since 2020, every tenanted property in England must have a valid Electrical Installation Condition Report.
-
-Fines for non-compliance: up to £30,000.
-
-We offer multi-property discounts and 48hr report turnaround.
-
-Book now at electricert.co.uk
-```
-
-### Campaign 3: Retargeting
-**Objective**: Conversions
-**Audience**: Website visitors who didn't convert (requires Pixel)
-**Budget**: £5-10/day
-
----
-
-## Integrating with Utilities Combined (utilitiescombined.co.uk)
-
-### Cross-Linking Strategy
-1. Add an "EICR Inspections" link in the Utilities Combined services dropdown pointing to electricert.co.uk
-2. Add a banner or card on the UC homepage promoting ElectriCert
-3. The ElectriCert footer already links to "Utilities Combined Group"
-4. Share Google Analytics property across both sites for unified reporting
-
-### Unified Google Ads Account
-- Run both websites under one Google Ads account
-- Use shared audience lists for retargeting
-- Cross-promote: show UC ads to ElectriCert visitors and vice versa
-- Use a single conversion tracking tag across both domains
-
-### Facebook Business Manager
-- Add both domains to one Business Manager account
-- Create a shared custom audience of visitors to either site
-- Run cross-promotion campaigns
-
----
-
-## SEO Optimisation Already Implemented
-
-- Semantic HTML5 structure with proper heading hierarchy
-- Schema.org LocalBusiness structured data
-- Open Graph meta tags for social sharing
-- Descriptive title tags and meta descriptions on every page
-- Canonical URLs on all pages
-- XML sitemap at /sitemap.xml
-- robots.txt configured (admin panel blocked)
-- Mobile-responsive design
-- Fast loading (no heavy frameworks)
-- Accessible (ARIA labels, skip links, semantic elements)
-- Internal linking between all pages
-
-### Additional SEO Actions To Take
-1. **Google Search Console**: Verify electricert.co.uk and submit sitemap
-2. **Google Business Profile**: Ensure your GBP listing links to electricert.co.uk
-3. **NAP Consistency**: Ensure Name, Address, Phone match across all directories
-4. **Google Reviews**: Link the "Read All Reviews" button to your actual Google Maps listing
-5. **Local Directories**: List on Checkatrade, Yell, Thomson, TrustATrader
-6. **Blog Content**: Consider adding blog posts targeting long-tail keywords:
-   - "How often should you have an EICR?"
-   - "What happens during an electrical inspection?"
-   - "EICR failed - what next?"
-   - "Landlord EICR responsibilities 2026"
+- [ ] Replace GTM container ID
+- [ ] Replace Google Ads conversion ID
+- [ ] Replace Microsoft Clarity ID
+- [ ] Verify plumcert.co.uk in Google Search Console + submit sitemap
+- [ ] Set up Google Business Profile
+- [ ] Create Calendly event type for `gas-safety-inspection-booking-call`
+- [ ] Create plumcert@utilitiescombined.co.uk email forwarder in Namecheap
+- [ ] Re-enable Real Findings page once 3+ findings are uploaded with photos
