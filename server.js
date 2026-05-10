@@ -1038,6 +1038,18 @@ http.createServer(async (req, res) => {
         return;
     }
 
+    // ---- UNIFIED ADMIN REDIRECTS ----
+    // The admin / installer panels for all Utilities Combined sister sites
+    // (electricert, oilcert, plumcert) live on the canonical electricert hub.
+    // Redirect any incoming /admin or /installer here so a single login serves
+    // all three brands. The ?from= query is just informational for the hub.
+    if (url === '/admin' || url === '/admin/' || url === '/installer' || url === '/installer/') {
+        const target = (url.startsWith('/admin') ? '/admin/' : '/installer') + '?from=plumcert';
+        res.writeHead(302, { Location: 'https://electricert.co.uk' + target });
+        res.end();
+        return;
+    }
+
     // ---- STATIC FILES ----
 
     let filePath = path.join(ROOT, url === '/' ? 'index.html' : url);
